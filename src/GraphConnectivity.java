@@ -23,7 +23,7 @@ public class GraphConnectivity {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));		
 		String linea = in.readLine();		
 		int testCases = Integer.parseInt(linea);
-		linea = in.readLine();			
+		linea = in.readLine();	 		
 		for (int i = 0; i < testCases; i++) {			
 			
 			while((linea = in.readLine())!= null && linea.length()>0){			
