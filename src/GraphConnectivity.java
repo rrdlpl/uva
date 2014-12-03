@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Vector;
 
 
 /***
@@ -11,12 +12,10 @@ import java.util.Queue;
  * @author R
  *  http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=400
  */
-public class GraphConnectivity {
+public class GraphConnectivity {	
 	
-	
-	static ArrayList<ArrayList<Integer>> grafo = new ArrayList<ArrayList<Integer>>(); 
-	static  Boolean [] visitados;
-	
+	static Vector<ArrayList<Integer>> grafo; 
+	static  Boolean [] visitados;	
 	
 	public static void main(String [] args) throws IOException{
 		
@@ -24,43 +23,32 @@ public class GraphConnectivity {
 		String linea = in.readLine();		
 		int testCases = Integer.parseInt(linea);
 		linea = in.readLine();	 		
-		for (int i = 0; i < testCases; i++) {			
-			
-			while((linea = in.readLine())!= null && linea.length()>0){			
+		for (int i = 0; i < testCases; i++) {		
+			linea = in.readLine();
+			int n = getNodeEtiqueta(linea,0); //Primera linea				
+			initializeGraph(n);				
+			while ((linea = in.readLine()) != null&& linea.length()>0) {										
+				int x = getNodeEtiqueta(linea, 0);
+				int y = getNodeEtiqueta(linea, 1);					
+				grafo.get(x).add(y);
+				grafo.get(y).add(x);
 				
-				int n = getNodeEtiqueta(linea,0); //Primera linea				
-				initializeGraph(n);				
-				while ((linea = in.readLine()) != null&& linea.length()>0) {										
-					int x = getNodeEtiqueta(linea, 0);
-					int y = getNodeEtiqueta(linea, 1);					
-					grafo.get(x).add(y);
-					grafo.get(y).add(x);
-					
-				}					
-				int numeroComponentes = getNumeroComponentesBFS();	
-				if(i>0)
-				{
-					System.out.println("\n");
-					
-				}
-				
-				System.out.println(numeroComponentes+"\n");
-				
-				
-			}		
-			
+			}					
+			int numeroComponentes = getNumeroComponentesDFS();
+			if(i>0)				
+				System.out.println();
+			System.out.println(numeroComponentes);
 		}
 		in.close();
 	}
 
 	private static void initializeGraph(int n) {
-		grafo = new ArrayList<ArrayList<Integer>>();
+		grafo = new Vector<ArrayList<Integer>>(n);
 		visitados = new Boolean[n+1];
 		for (int i = 0; i <= n; i++) {
 			visitados[i] = false;
 			grafo.add(new ArrayList<Integer>());
-		}
-		
+		}		
 	}
 
 	private static int getNumeroComponentesDFS() {
