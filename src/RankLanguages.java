@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 /***
@@ -19,17 +18,21 @@ public class RankLanguages {
 		TreeMap<Character, Integer> languages;
 		
 		public LanguageComparator(TreeMap<Character, Integer> l){
-			languages =l;
+			languages = l;
 		}
 
 		public int compare(Character i, Character j) {
 			if(languages.get(i) > languages.get(j))
-				return 1;
-			else if (languages.get(i) < languages.get(j))
 				return -1;
-			else if (i > j)
+			else if (languages.get(i) < languages.get(j))
 				return 1;
-			return -1;
+			else if (languages.get(i) == languages.get(j))
+				if(i<j){
+					return -1;
+				}else if(i>j){
+					return 1;
+				}
+			return 0;
 		}
 		
 	}
@@ -61,7 +64,7 @@ public class RankLanguages {
 				sb.append(key+": "+r.get(key)+"\n");
 			}
 		}
-		System.out.println(sb.toString());
+		System.out.print(sb.toString());
 	}
 	
 	
