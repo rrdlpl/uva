@@ -11,8 +11,8 @@ public class ArmyBuddiesV2 {
 		StringTokenizer tokenizer = new StringTokenizer(in.readLine());
 		int s = Integer.parseInt(tokenizer.nextToken());
 		int b = Integer.parseInt(tokenizer.nextToken());
-		int []soldiersRight = new int[s+10];
-		int []soldiersLeft = new int[s+10];
+		int []soldiersRight = new int[100010];
+		int []soldiersLeft = new int[100010];
 		StringBuilder sb = new StringBuilder();
 		while(!(s==0&&b==0)){
 			for (int i = 1; i < s+1; i++) {
@@ -36,12 +36,11 @@ public class ArmyBuddiesV2 {
 			sb.append("-\n");	
 			tokenizer = new StringTokenizer(in.readLine());
 			s = Integer.parseInt(tokenizer.nextToken());
-			b = Integer.parseInt(tokenizer.nextToken());
-			soldiersRight = new int[s+10];
-			soldiersLeft = new int[s+10];
+			b = Integer.parseInt(tokenizer.nextToken());			
 		}
-		in.close();
+		
 		System.out.print(sb.toString());
+		in.close();
 		System.exit(0);
 	}
 	
