@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class SpiralTap {
 
-	static int col = -1, row = -1;
+	static long col = -1, row = -1;
 
 	static int [] movesRow = new int[]{-1,0,1,0};//
 	static int [] movesCol = new int[]{0,-1,0,1};
@@ -15,20 +15,20 @@ public class SpiralTap {
 	public static void main(String []args) throws IOException{		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer tokenizer = new StringTokenizer(in.readLine());
-		int SZ = Integer.parseInt(tokenizer.nextToken());
-		int P = Integer.parseInt(tokenizer.nextToken());
+		long SZ = Integer.parseInt(tokenizer.nextToken());
+		long P = Long.parseLong(tokenizer.nextToken());
 				
 		StringBuilder sb = new StringBuilder();
 		  
 		while(true){
 		   
-		   grid = new int[SZ][SZ];
+		   //grid = new int[SZ][SZ];
 		   //fill(SZ-1,SZ-1 ,P, SZ*SZ);
-		   fill(SZ,P);
+		   fillB(SZ,P);
 		   sb.append("Line = "+row+", column = "+col+".");
 		   tokenizer = new StringTokenizer(in.readLine());
-		   SZ = Integer.parseInt(tokenizer.nextToken());
-		   P = Integer.parseInt(tokenizer.nextToken());
+		   SZ = Long.parseLong(tokenizer.nextToken());
+		   P = Long.parseLong(tokenizer.nextToken());
 		   if(SZ==0&&P==0) break;
 		   sb.append("\n");
 		   
@@ -37,6 +37,56 @@ public class SpiralTap {
 		
 	}
 	
+	public static void fillB(long sz, long p){
+		long max = sz*sz;		
+		
+		long endX = sz/2+1, endY = sz/2+1;
+		
+		long x = 1, y = sz;
+		row = endX;
+		col = endY;
+		while(x!=endX&&y!=endY){
+			/*if((max-y*4-5)>p){
+				max -=y*4-5; 
+			}else{*/
+				for (long i = y; i >= x; i--) {
+					if(max==p){
+						row =i;
+						col = y;	
+						return;
+					}
+					max--;				
+				}
+				for (long j = y-1; j>= x; j--) {
+					if(max==p){
+						row = x;
+						col = j;
+						return;
+					}
+					max--;					
+				}
+				for (long i = x+1; i <= y; i++) {
+					if(max==p){
+						row=i;
+						col =x;
+						return;
+					}
+					max--;
+				}
+				for (long j = x+1; j <=y-1 ; j++) {
+					if(max==p){
+						row =y;
+						col=j;
+						return;
+					}
+					max--;
+				}
+			}
+			y--;
+			x++;			
+		//}		
+	}
+	/*
 	public static void fill(int sz, int p){	 
 	    
 		int max  = sz*sz;			
@@ -69,7 +119,7 @@ public class SpiralTap {
 			}			
 			max--;
 		}		
-	}
+	}*/
 	/*
 	
 	private static void fill(int i, int j, int p, int filler) {
@@ -86,7 +136,8 @@ public class SpiralTap {
 			fill(i+movesRow[k], j+movesCol[k],p, filler);
 		}
 	}	*/
+	/*
 	private static boolean canMove(int i, int j) {
 		return i >= 0 && i < grid.length && j>=0 && j< grid.length && grid[i][j] == 0;
-	}
+	}*/
 }
