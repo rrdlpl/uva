@@ -16,25 +16,68 @@ public class SpiralTap {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer tokenizer = new StringTokenizer(in.readLine());
 		long SZ = Integer.parseInt(tokenizer.nextToken());
-		long P = Long.parseLong(tokenizer.nextToken());
-				
+		long P = Long.parseLong(tokenizer.nextToken());				
 		StringBuilder sb = new StringBuilder();
 		  
-		while(true){
-		   
-		   //grid = new int[SZ][SZ];
-		   //fill(SZ-1,SZ-1 ,P, SZ*SZ);
-		   fillB(SZ,P);
-		   sb.append("Line = "+row+", column = "+col+".");
+		while(SZ!=0&&P!=0){		  
+		   fillC(SZ,P);
+		   sb.append("Line = ").append(row).append(", column = ").append(col).append(".\n");
 		   tokenizer = new StringTokenizer(in.readLine());
 		   SZ = Long.parseLong(tokenizer.nextToken());
-		   P = Long.parseLong(tokenizer.nextToken());
-		   if(SZ==0&&P==0) break;
-		   sb.append("\n");
-		   
+		   P = Long.parseLong(tokenizer.nextToken());	 
 		}
 		System.out.print(sb.toString());
 		
+	}
+	
+	public static void fillC(long sz, long p){		
+		long high = sz-sz/2;
+		long low = 1;
+		while(high >= low)
+		{ 
+			long mid = (high+low)/2;
+			long q = ((mid*2)-1)*((mid*2)-1);
+			if(q==p)
+			{
+				high = mid;
+				low = mid;
+			}
+			if(q < p){
+				low = mid +1;
+			}else{
+				high = mid-1;
+			}
+		}	
+		long y = Math.max(sz/2+low,sz/2+ high);
+		long x = sz-y+1;
+		long max = ((y-x+1)*(y-x+1));
+		long min = ((y-x+1)*((y-x+1)-1)+1);
+		if(max>= p&& min<= p){
+			col = y;
+			row = sz-(max-p)-x+1;
+			return;
+		}
+		max = min;		
+		min = ((y-x+1)*((y-x+1)-2)+2);
+		if(max>p &&min<=p){
+			row = x;
+			col =  sz-(max-p)-x+1;
+			return;
+		}
+		max = min;		
+		min = ((y-x+1)*((y-x+1)-3)+3);
+		if(max>p &&min<=p){
+			col = x;
+			row = max - p +x;
+			return;
+		}
+		max = min;		
+		min = ((y-x+1)*((y-x+1)-4)+5);
+		if(max>p &&min<=p){
+			row = y;
+			col = max - p +x;
+			return;
+		}
 	}
 	
 	public static void fillB(long sz, long p){
