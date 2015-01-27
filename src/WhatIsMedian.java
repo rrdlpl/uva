@@ -16,8 +16,7 @@ public class WhatIsMedian {
 		StringBuilder sb = new StringBuilder();
 		while (st.hasMoreElements()) {
 			long x = Long.parseLong(st.nextToken());	
-			array[i] = x;			
-			i++;			
+			array[i++] = x;		
 			mergeSort(0, i);
 			long median;
 			if(i%2==1){
@@ -45,28 +44,21 @@ public class WhatIsMedian {
 		int i = start, j = mid, k= start;
 		while (i < mid && j < end && k <end) {
 			if(array[i] < array[j]){
-				aux[k] = array[i];
-				i++;
+				aux[k] = array[i++];				
 			}else{
-				aux[k] =array[j];
-				j++;
+				aux[k] =array[j++];				
 			}
 			k++;
 		}
 		while(i<mid && k<end){
-			aux[k] = array[i];
-			k++;
-			i++;
+			aux[k++] = array[i++];			
 		}
 		while(j<end && k < end){
-			aux[k] = array[j];
-			k++;
-			j++;
+			aux[k++] = array[j++];			
 		}
 		for (k = start; k < end; k++) {
 			array[k] = aux[k];
-		}
-		
+		}		
 	}
 	
 	
