@@ -8,11 +8,12 @@ public class SortAlgorithms {
 	public static void main(String []args) throws NumberFormatException, IOException{
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		int t = Integer.parseInt(in.readLine());
-		int []a = new int[t];
-		int []aux = new int[t];
-		for (int i = 0; i < a.length; i++) {
-			a[i] = Integer.parseInt(in.readLine());
-		}		
+		int []a = new int[]{1,3,4,60,50,70};
+		int []aux = new int[6];
+		//for (int i = 0; i < a.length; i++) {
+		//	a[i] = Integer.parseInt(in.readLine());
+		//}
+		
 		mergeSort(a,aux, 0, a.length);
 		for (int i = 0; i < a.length; i++) {
 			System.out.println(a[i]);

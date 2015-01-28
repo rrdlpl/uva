@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 /***
  * 
@@ -24,6 +28,8 @@ public class UglyNumbers {
 			tree.add(lastUgly*3);
 			tree.add(lastUgly*5);
 		}
+		
+		
 	}
 	
 }
