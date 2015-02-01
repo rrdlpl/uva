@@ -25,7 +25,7 @@ public class TrainSwapping {
 				}
 				sb.append("Optimal train swapping takes ").append(countInversions(0, n)).append(" swaps.\n");
 			}
-			System.out.println(sb.toString());
+			System.out.print(sb.toString());
 			in.close();
 			System.exit(0);
 		}
