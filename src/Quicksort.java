@@ -41,13 +41,14 @@ public class Quicksort {
 
 	private static int getPivotMedian(int[]array,int low, int high) {
 		int a = array[low];
-		int b = array[(high+low)/2];
+		int med = (high+low)/2;
+		int b = array[med];
 		int c=  array[high];		
 		int sum = a+b+c;
 		int max = Math.max(a, Math.max(b, c));
 		int min = Math.min(a, Math.min(b,c));
 		sum = sum-max-min; 
-		return sum == a? low: sum == c? high : (high+low)/2;
+		return sum == a? low: sum == c? high : med;
 	}
 
 
