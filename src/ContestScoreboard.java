@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 
 public class ContestScoreboard {
 	
+
 	public static class Contestant implements Comparable<Contestant>{
 		int teamNumber;
 		int[] tries;
@@ -26,9 +27,9 @@ public class ContestScoreboard {
 				if(this.timeSpent == o.timeSpent){
 					return this.teamNumber- o.teamNumber;
 				}
-				return o.timeSpent- this.timeSpent;
+				return this.timeSpent - o.timeSpent;
 			}
-			return this.problemsSolved - o.problemsSolved;
+			return o.problemsSolved - this.problemsSolved;
 		}
 		
 		public void correct(int i, int t){
@@ -52,8 +53,9 @@ public class ContestScoreboard {
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		int testCases = Integer.parseInt(in.readLine());
 		StringBuilder sb = new StringBuilder();
+		in.readLine();
 		for (int i = 0; i < testCases; i++) {
-			in.readLine();
+			
 			contestants = new int[101];
 			ArrayList<Contestant> concursantes = new ArrayList<Contestant>();			
 			String line;
@@ -62,7 +64,7 @@ public class ContestScoreboard {
 			while((line = in.readLine()) != null && !line.equals("")){ 
 				StringTokenizer tokenizer = new StringTokenizer(line);
 				int c = Integer.parseInt(tokenizer.nextToken());
-				ContestScoreboard.Contestant contestant;
+				Contestant contestant;
 				if(contestants[c]==0){
 					contestant = new Contestant(c);
 					concursantes.add(contestant);
