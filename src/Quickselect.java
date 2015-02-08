@@ -1,6 +1,4 @@
 
-
-
 public class Quickselect {
 	
 	static int kTh;
