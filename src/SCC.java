@@ -29,14 +29,11 @@ public class SCC {
 		for (int i = N-1; i >= 1; i--) {
 			if(!visited[finishingTimes[i]]){
 				s = 0;
-				countSize(finishingTimes[i]);			
-				
+				countSize(finishingTimes[i]);
 				tree.add(s);
-				//System.out.println(s);
 			}
 		}
 		for (int i = 0; i < 5; i++) {
-			//System.out.print(array[i]+",");
 			System.out.print(tree.pollLast()+",");
 		}
 		in.close();
