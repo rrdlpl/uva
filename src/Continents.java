@@ -19,7 +19,7 @@ public class Continents {
 		BufferedReader in  = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		String line;
-		while((line = in.readLine()) != null){
+		while((line = in.readLine()) != null && !line.equals("")){
 			StringTokenizer tokenizer = new StringTokenizer(line);
 			N = Integer.parseInt(tokenizer.nextToken());
 			M = Integer.parseInt(tokenizer.nextToken());                                  
@@ -54,13 +54,15 @@ public class Continents {
 	}
 
 	private static int floodFill(int i, int j, char land2) {
-		if(!canMove(i)||visited[i][j]||map[i][j] != land2) return 0;
-		visited[i][j] = true;
-		int sum = 1;
-		for (int k = 0; k < x.length; k++) {
-			sum +=floodFill(x[k]+i, getY(k, j), land2);
+		if(canMove(i)&&!visited[i][j]&&map[i][j] == land2){
+			visited[i][j] = true;
+			int sum = 1;
+			for (int k = 0; k < x.length; k++) {
+				sum +=floodFill(x[k]+i, getY(k, j), land2);
+			}
+			return sum;
 		}
-		return sum;
+		return 0;
 	}
 
 

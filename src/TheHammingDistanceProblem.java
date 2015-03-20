@@ -6,7 +6,7 @@ import java.util.StringTokenizer;
 
 public class TheHammingDistanceProblem {
 	static int N, H, maxSteps;
-	
+	static char [] output;
 	public static void main(String []args) throws IOException {		
 		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
@@ -20,11 +20,12 @@ public class TheHammingDistanceProblem {
 			N = Integer.parseInt(tokenizer.nextToken());
 			H = Integer.parseInt(tokenizer.nextToken());	
 			maxSteps = getMaxSteps(N,H);
-			System.out.println(maxSteps);
-			for (int j = (1<<H)-1; j < (1<<N); j++) {
-				if(Integer.bitCount(j)==H)
-					sb.append(getHammingDistance(j, N)).append("\n");
-			}	
+			int last  = (1<<H)-1;
+			int step = 0;
+			sbDistance = new StringBuilder();
+			hammingDistance(N, H, last, step);
+			sb.append(sbDistance.toString()).append("\n");
+			
 		}		
 		System.out.print(sb.toString());
 		in.close();
@@ -43,7 +44,19 @@ public class TheHammingDistanceProblem {
 		return sum/div;
 	}
 	
-
+	static StringBuilder sbDistance;
+	
+	private static void hammingDistance(int n, int h , int last, int step){
+		if(step == maxSteps){
+			return;
+		}
+		if(Integer.bitCount(last) == h){
+			sbDistance.append(getHammingDistance(last, n)).append("\n");
+		}else{
+			step--;
+		}
+		hammingDistance(n, h, last+1, step+1);
+	}
 
 	static String getHammingDistance(int i, int n){
 		return Integer.toBinaryString(i | (1<<n)).substring(1);
